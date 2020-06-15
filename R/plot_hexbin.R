@@ -4,7 +4,8 @@
                          colors = NULL,
                          title = NULL,
                          xlab = NULL,
-                         ylab = NULL) {
+                         ylab = NULL,
+                        grad = c("lightblue","grey")) {
   if (any(!c("x", "y", colour_by) %in% colnames(drhex))) {
     stop("The dataframe must contain columns named 'x', 'y' and label.")
   }
@@ -34,7 +35,7 @@
   } else {
     ggplot(drhex, aes_string("x", "y", fill = colour_by)) +
       geom_hex(stat = "identity") +
-      theme_classic() + scale_fill_viridis_c() + ggtitle(title) +
+      theme_classic() + scale_color_gradientn(colours=grad) + ggtitle(title) +
       labs(x = xlab, y = ylab) + theme(legend.title = element_blank())
   }
 }
